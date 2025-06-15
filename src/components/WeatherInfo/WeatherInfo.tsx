@@ -38,63 +38,69 @@ const WeatherInfo = ({ weather, error }: Props) => {
       />
 
       {error ? (
-        <div className="weather-info__container container error">
-          <div className="error-message">{error}</div>
+        <div className="container">
+          <div className="weather-info__container error">
+            <div className="error-message">{error}</div>
+          </div>
         </div>
       ) : weather ? (
-        <div className="weather-info__container container">
-          <div className="city">
-            <FaLocationArrow className="location-icon" /> {weather.name},{" "}
-            {weather.sys.country}
-          </div>
+        <div className="container">
+          <div className="weather-info__container">
+            <div className="city">
+              <FaLocationArrow className="location-icon" /> {weather.name},{" "}
+              {weather.sys.country}
+            </div>
 
-          <h2 className="main">{weather.weather?.[0].main}</h2>
+            <h2 className="main">{weather.weather?.[0].main}</h2>
 
-          <div className="description">
-            <img
-              src={`https://openweathermap.org/img/wn/${weather.weather?.[0].icon}@2x.png`}
-              alt={weather.weather?.[0].description}
-              className="weather-icon"
-            />
-            <div className="label">{weather.weather?.[0].description}</div>
-          </div>
+            <div className="description">
+              <img
+                src={`https://openweathermap.org/img/wn/${weather.weather?.[0].icon}@2x.png`}
+                alt={weather.weather?.[0].description}
+                className="weather-icon"
+              />
+              <div className="label">{weather.weather?.[0].description}</div>
+            </div>
 
-          <div className="statGrid">
-            <div className="stat coordinates">
-              <div className="value">
-                {weather.coord.lat}, {weather.coord.lon}
+            <div className="statGrid">
+              <div className="stat coordinates">
+                <div className="value">
+                  {weather.coord.lat}, {weather.coord.lon}
+                </div>
+                <div className="title">
+                  <FaGlobe className="icon coord" /> Coordinates
+                </div>
               </div>
-              <div className="title">
-                <FaGlobe className="icon coord" /> Coordinates
+              <div className="stat temperature">
+                <div className="value">{weather.main.temp} °C</div>
+                <div className="title">
+                  <FaTemperatureHalf className="icon temp" /> Temperature
+                </div>
+              </div>
+              <div className="stat humidity">
+                <div className="value">{weather.main.humidity}%</div>
+                <div className="title">
+                  <FaDroplet className="icon humi" /> Humidity
+                </div>
+              </div>
+              <div className="stat wind">
+                <div className="value">{weather.wind.speed} m/s</div>
+                <div className="title">
+                  <FaWind className="icon wind" /> Wind speed
+                </div>
               </div>
             </div>
-            <div className="stat temperature">
-              <div className="value">{weather.main.temp} °C</div>
-              <div className="title">
-                <FaTemperatureHalf className="icon temp" /> Temperature
-              </div>
-            </div>
-            <div className="stat humidity">
-              <div className="value">{weather.main.humidity}%</div>
-              <div className="title">
-                <FaDroplet className="icon humi" /> Humidity
-              </div>
-            </div>
-            <div className="stat wind">
-              <div className="value">{weather.wind.speed} m/s</div>
-              <div className="title">
-                <FaWind className="icon wind" /> Wind speed
-              </div>
-            </div>
-          </div>
 
-          <div className="time">
-            {dateFormatter(weather.dt, weather.timezone)}
+            <div className="time">
+              {dateFormatter(weather.dt, weather.timezone)}
+            </div>
           </div>
         </div>
       ) : (
-        <div className="weather-info__container container">
-          <FaSpinner className="icon__loading" />
+        <div className="container">
+          <div className="weather-info__container">
+            <FaSpinner className="icon__loading" />
+          </div>
         </div>
       )}
     </>

@@ -1,5 +1,5 @@
 const API_KEY = "5c942189e161aba0cfa4feabdbdb7da4";
-const BASE_URL = "http://api.openweathermap.org/geo/1.0/direct";
+const BASE_URL = "https://api.openweathermap.org/geo/1.0/direct";
 
 export interface GeocodingData {
   name: string;

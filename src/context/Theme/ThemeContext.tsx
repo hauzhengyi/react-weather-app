@@ -28,6 +28,17 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     document.documentElement.setAttribute("data-theme", theme);
     document.documentElement.classList.remove("light", "dark");
     document.documentElement.classList.add(theme);
+
+    let metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (!metaThemeColor) {
+      metaThemeColor = document.createElement("meta");
+      metaThemeColor.setAttribute("name", "theme-color");
+      document.head.appendChild(metaThemeColor);
+    }
+    metaThemeColor.setAttribute(
+      "content",
+      theme === "dark" ? "#000000" : "#ffffff"
+    );
   }, [theme]);
 
   return (

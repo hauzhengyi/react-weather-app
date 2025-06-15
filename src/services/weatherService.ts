@@ -1,6 +1,5 @@
 const API_KEY = "5c942189e161aba0cfa4feabdbdb7da4";
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
-// const BASE_URL = "http://api.openweathermap.org/geo/1.0/direct";
 
 export interface WeatherData {
   coord: {
@@ -78,6 +77,13 @@ export const fetchWeatherByCoordinates = (
   });
 };
 
+/**
+ * Internal helper that performs the API request.
+ *
+ * @param {Record<string, string>} params - Query parameters for the API call.
+ * @returns {Promise<WeatherData>}
+ * @throws {Error}
+ */
 const fetchWeather = async (
   params: Record<string, string>
 ): Promise<WeatherData> => {
@@ -90,10 +96,13 @@ const fetchWeather = async (
   const url = `${BASE_URL}?${queryString}`;
 
   const response = await fetch(url);
+  const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(`API error: ${response.status} ${response.statusText}`);
+    if (response.status === 404)
+      throw new Error("Sorry, no weather data avaiable for this location.");
+    throw new Error(data.message);
   }
 
-  return await response.json();
+  return data;
 };

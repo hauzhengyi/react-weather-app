@@ -1,0 +1,46 @@
+header
+  box-sizing: border-box
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: var(--header-height)
+  border-bottom: 1px solid var(--background-200)
+
+.header__container
+  display: flex
+  align-items: center
+  height: 100%
+
+.header__brand
+  .title
+    display: flex
+    align-items: center
+    gap: 0.5rem
+    .logo
+      height: 1.25rem
+      width: 1.25rem
+    h1
+      margin: 0.125rem 0
+      font-size: 1.15rem
+      font-weight: 600
+  .description
+    margin: 0
+    font-size: 0.8rem
+
+.header__local-time
+  margin-inline: auto 1rem
+  text-align: right
+  .time
+    font-size: 1.2rem
+    margin-bottom: 0.25rem
+  .details
+    display: flex
+    align-items: baseline
+    .title
+      font-size: 0.7rem
+      padding-right: 0.25rem
+      border-right: 1px solid var(--background-300)
+    .date
+      font-size: 0.7rem
+      padding-left: 0.25rem

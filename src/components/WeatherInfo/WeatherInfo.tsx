@@ -1,43 +1,46 @@
-import { useMemo } from "react";
+import "./weather-info.sass";
 import { type WeatherData } from "@/services/weatherService";
+import { dateFormatter } from "@/utils/dateFormatter";
 
 type Props = { weather: WeatherData; [key: string]: unknown };
 
 const WeatherInfo = ({ weather }: Props) => {
-  const localTime = useMemo(() => {
-    const { dt, timezone } = weather;
-    return new Date((dt + timezone) * 1000).toLocaleString();
-  }, [weather]);
-
   return (
     <>
-      <p className="weather-info city">
+      <p className="weather-info__city">
         {weather.name}, {weather.sys.country}
       </p>
 
-      <img
-        src={`https://openweathermap.org/img/wn/${weather.weather?.[0].icon}@2x.png`}
-        alt={weather.weather?.[0].description}
-        className="weather-info icon"
-      />
+      <h2 className="weather-info__main">
+        <img
+          src={`https://openweathermap.org/img/wn/${weather.weather?.[0].icon}@2x.png`}
+          alt={weather.weather?.[0].description}
+          className="weather-info__icon"
+        />
+        {weather.weather?.[0].main}
+      </h2>
 
-      <h2 className="weather-info main">{weather.weather?.[0].main}</h2>
-
-      <p className="weather-info description">
+      <p className="weather-info__description">
         {weather.weather?.[0].description}
       </p>
 
-      <p className="weather-info temperature">
+      <p className="weather-info__coordinates">
+        Coordinates: {weather.coord.lat}, {weather.coord.lon}
+      </p>
+
+      <p className="weather-info__temperature">
         Temperature: {weather.main.temp} °C
       </p>
 
-      <p className="weather-info humidity">
+      <p className="weather-info__humidity">
         Humidity: {weather.main.humidity}%
       </p>
 
-      <p className="weather-info wind">Wind speed: {weather.wind.speed} m/s</p>
+      <p className="weather-info__wind">Wind speed: {weather.wind.speed} m/s</p>
 
-      <p className="weather-info time">Time: {localTime}</p>
+      <p className="weather-info__time">
+        Time: {dateFormatter(weather.dt, weather.timezone)}
+      </p>
     </>
   );
 };

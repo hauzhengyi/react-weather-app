@@ -5,6 +5,8 @@ import {
   type GeocodingData,
 } from "@/services/geocodingService";
 import { FaSpinner } from "react-icons/fa";
+import { CiSearch } from "react-icons/ci";
+import { HiXMark } from "react-icons/hi2";
 
 type Props = {
   onSearch: (cityName: string, countryCode: string) => void;
@@ -84,35 +86,59 @@ const WeatherSearch = ({ onSearch }: Props) => {
   return (
     <div className="weather-search__container container">
       <form className="weather-search__form" onSubmit={(e) => onSubmit(e)}>
-        <input
-          type="text"
-          placeholder="City"
-          value={cityName}
-          onChange={handleInputCity}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Country code"
-          value={countryCode}
-          onChange={handleInputCountry}
-        />
-        <button type="submit" className="button button__accent">
-          Search
-        </button>
-        <button type="button" className="button" onClick={clearInput}>
-          Clear
+        <div className="input-group">
+          <input
+            type="text"
+            placeholder="City"
+            name="search"
+            className="input-search"
+            value={cityName}
+            onChange={handleInputCity}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Country code"
+            name="country-code"
+            className="input-country-code"
+            value={countryCode}
+            onChange={handleInputCountry}
+          />
+          <button
+            type="button"
+            className="button clear-button"
+            onClick={clearInput}
+          >
+            <HiXMark className="clear-icon" />
+          </button>
+        </div>
+        <button type="submit" className="button button__accent submit-button">
+          <CiSearch />
+          <span>Search</span>
         </button>
       </form>
 
       {loadingSuggestions ? (
-        <FaSpinner className="icon__loading" />
+        <div className="weather-search__suggestions">
+          <FaSpinner className="icon__loading" />
+        </div>
       ) : (
         suggestions.length > 0 && (
           <div className="weather-search__suggestions">
-            <ul>
+            <button
+              type="button"
+              className="button close-button"
+              onClick={() => setSuggestions([])}
+            >
+              Close
+            </button>
+
+            <div className="title">Check out these locations</div>
+
+            <ul className="list">
               {suggestions.map((s, index) => (
                 <li
+                  className="suggestion"
                   key={`${s.name}-${s.country}-${index}`}
                   onClick={() => onClickSuggestion(s)}
                 >
@@ -120,10 +146,11 @@ const WeatherSearch = ({ onSearch }: Props) => {
                 </li>
               ))}
             </ul>
-            <p>
+
+            <p className="disclaimer">
               <i>
                 Suggestions are provided by Openweathermap's Geocoding API.
-                Cities shown here are not guaranteed to be found in their
+                Cities shown here are not guaranteed to be available in their
                 weather API.
               </i>
             </p>

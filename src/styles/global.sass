@@ -68,6 +68,9 @@
   --accent-900: #09172a
   --accent-950: #040c15
 
+  --background-transparent: #ffffff66
+  --box-shadow: 0 0 10px 0 #00000033
+
 :root[data-theme="dark"]
   --text-50: #0d0d0d
   --text-100: #1a1a1a
@@ -129,6 +132,9 @@
   --accent-900: #d5e3f6
   --accent-950: #eaf1fb
 
+  --background-transparent: #28282888
+  --box-shadow: 0 0 10px 0 #00000077
+
 /* ================================ Variables =============================== */
 
 /* ================================== HTML ================================== */
@@ -137,6 +143,7 @@ body
   color: var(--text-950)
   font-family: var(--font-family)
   font-optical-sizing: auto
+  margin: 0
   margin-top: var(--header-height)
   background: var(--background-50)
   transition: background 0.2s ease-out, color 0.2s ease-out
@@ -188,6 +195,9 @@ button
   align-items: center
   height: 2.2rem
   min-width: 6rem
+  gap: 0.25rem
+  padding: 0 0.5rem
+  background: var(--background-transparent)
   border: 1px solid var(--background-200)
   border-radius: 999rem
   transition: background 0.1s ease-out

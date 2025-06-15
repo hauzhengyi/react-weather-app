@@ -1,3 +1,94 @@
-.weather-info
-  &__icon
-    height: 3rem
+.weather-info__wallpaper
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100vh
+  background-position: center
+  background-image: linear-gradient(45deg, var(--primary-500), var(--primary-200), var(--secondary-200))
+  z-index: -100
+  &.clear
+    background-image: url('/react-weather-app/assets/images/clear.webp')
+  &.clear.night
+    background-image: url('/react-weather-app/assets/images/clear-night.webp')
+  &.cloud
+    background-image: url('/react-weather-app/assets/images/cloud.webp')
+  &.cloud.night
+    background-image: url('/react-weather-app/assets/images/cloud-night.webp')
+  &.drizzle
+    background-image: url('/react-weather-app/assets/images/drizzle.webp')
+  &.fog
+    background-image: url('/react-weather-app/assets/images/fog.webp')
+  &.rain
+    background-image: url('/react-weather-app/assets/images/rain.webp')
+  &.snow
+    background-image: url('/react-weather-app/assets/images/snow.webp')
+  &.thunder
+    background-image: url('/react-weather-app/assets/images/thunder.webp')
+
+.weather-info__container
+  display: flex
+  flex-direction: column
+  align-items: center
+  text-align: center
+  width: fit-content
+  min-width: 20rem
+  min-height: 20rem
+  margin-inline: auto
+  padding: 1rem 3rem
+  border-radius: 1rem
+  border: 1px solid var(--background-100)
+  background: var(--background-transparent)
+  backdrop-filter: blur(7px)
+  .city
+    font-size: 0.8rem
+    font-weight: 500
+    .location-icon
+      margin-right: 0.25rem
+      color: var(--accent-600)
+  .main
+    font-size: 3.5rem
+    margin: 0
+  .description
+    display: flex
+    align-items: center
+    width: fit-content
+    margin-inline: auto
+    .label
+      margin-inline: auto
+      padding: 0.1rem 0.5rem
+      border-radius: 999rem
+      background: var(--accent-500)
+      color: var(--white)
+      font-size: 0.8rem
+      font-weight: 500
+      text-transform: capitalize
+  .weather-icon
+    height: 2rem
+    width: 2rem
+
+  .statGrid
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+    grid-template-rows: repeat(2, 1fr)
+    gap: 1rem
+    padding-block: 1.5rem
+    border-bottom: 1px solid var(--background-700)
+    .value
+      color: var(--secondary-600)
+      font-size: 1.5rem
+      font-weight: 600
+      margin-bottom: 0.25rem
+    .title
+      font-size: 0.8rem
+      .icon
+        margin-right: 0.25rem
+
+  .time
+    font-size: 0.8rem
+    margin-top: 1rem
+
+  &.error
+    color: red
+    border-color: red
+    background: #ff000044

@@ -5,7 +5,10 @@ header
   left: 0
   width: 100%
   height: var(--header-height)
+  background: var(--background-transparent)
+  backdrop-filter: blur(7px)
   border-bottom: 1px solid var(--background-200)
+  z-index: 100
 
 .header__container
   display: flex
@@ -40,7 +43,7 @@ header
     .title
       font-size: 0.7rem
       padding-right: 0.25rem
-      border-right: 1px solid var(--background-300)
+      border-right: 1px solid var(--text-900)
     .date
       font-size: 0.7rem
       padding-left: 0.25rem

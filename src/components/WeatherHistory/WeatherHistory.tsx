@@ -84,6 +84,11 @@ const WeatherHistory = ({ newEntry, onSearch }: Props) => {
             ))}
           </ul>
         )}
+
+        <div className="credits">
+          <div>Powered by Openweathermap API</div>
+          <div>Created by Zheng Yi</div>
+        </div>
       </div>
     </div>
   );
